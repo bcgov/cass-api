@@ -1,8 +1,12 @@
 # Pull in nodejs-8 centos container
 FROM centos/nodejs-8-centos7
 
+USER root
+
 RUN yum install -y java-1.8.0-openjdk && \
     yum clean all
+
+USER 1001
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
