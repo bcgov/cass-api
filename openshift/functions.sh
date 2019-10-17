@@ -185,7 +185,7 @@ create_deployment_project(){
     start_color $DARK_GRAY
     params="-p API_IMAGE_NAMESPACE=$2"
     grant_puller_permissions $1 $2
-    oc process -f "$SCRIPT_DIR/api-postgres-deploy.json" $params | oc create -f -
+    oc process -f "$SCRIPT_DIR/api/api-postgres-deploy.json" $params | oc create -f -
     end_color
     expose_postgres
     write_postgres_envfile

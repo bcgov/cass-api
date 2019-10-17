@@ -20,7 +20,7 @@ params="-p API_IMAGE_NAMESPACE=tools"
 
 if [ "$ok" == "y" ]; then
     echo "Deploying api environment..."
-    oc process -f "$SCRIPT_DIR/api-postgres-deploy.json" $params | oc create -f -
+    oc process -f "$SCRIPT_DIR/api/api-postgres-deploy.json" $params | oc create -f -
 else
     exit 0
 fi
