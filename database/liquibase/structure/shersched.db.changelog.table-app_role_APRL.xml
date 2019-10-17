@@ -15,7 +15,7 @@
     <!-- Changsets -->
     <changeSet author="Carol Geisler" id="CRTTAB_APRL_1_0">
         <createTable catalogName="${POSTGRES_CATALOG}" schemaName="${POSTGRES_SCHEMA}" tableName="app_role" 
-        	remarks="APP_ROLE captures the definition of roles within the Sheriff Scheduling application.  App Roles may be linked to App Users and App_Functions to control access to different functionality in the application.">
+        	remarks="APP_ROLE captures the definition of roles within the Court Administration Scheduling application.  App Roles may be linked to App Users and App_Functions to control access to different functionality in the application.">
             <column name="app_role_id" type="UUID">
                 <constraints nullable="false"/>
             </column>

@@ -1,5 +1,5 @@
-# Sheriff Scheduling API
-This project represents the API for the Sheriff Scheduling (Code Named 'Shuber') application.
+# Court Administration Scheduling API
+This project represents the API for the Court Administration Scheduling (Code Named 'Shuber') application.
 
 ## Project Architecture
 The architecture notes for this project and be found in the [Project Docs](./docs/index.md).

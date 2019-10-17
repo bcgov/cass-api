@@ -15,7 +15,7 @@
     <!-- Changsets -->
     <changeSet author="Carol Geisler" id="CRTTAB_USR_1_0">
         <createTable catalogName="${POSTGRES_CATALOG}" schemaName="${POSTGRES_SCHEMA}" tableName="app_user" 
-          remarks="APP_USER captures the the definition for users who can access the Sheriff Scheduling application.  An App User may be associated with a Sheriff, as well as Role and Location information to manage authorization to data and app features.">
+          remarks="APP_USER captures the the definition for users who can access the Court Administration Scheduling application.  An App User may be associated with a Sheriff, as well as Role and Location information to manage authorization to data and app features.">
             <column name="app_user_id" type="UUID">
                 <constraints nullable="false"/>
             </column>

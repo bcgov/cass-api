@@ -1,7 +1,7 @@
 {
   "name": "jag-shuber-api",
   "version": "2.0.0",
-  "description": "Sheriff Scheduling System Api",
+  "description": "Court Administration Scheduling System Api",
   "main": "dist/client/index",
   "typings": "dist/client/index",
   "repository": "git@github.com:bcgov/jag-shuber-api.git",

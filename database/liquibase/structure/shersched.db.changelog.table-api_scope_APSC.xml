@@ -16,7 +16,7 @@
     <changeSet author="Carol Geisler" id="CRTTAB_APSC_1_0">
       <comment>Create the Api Scope table to map to api endpoints, either single or clusters.</comment>
         <createTable catalogName="${POSTGRES_CATALOG}" schemaName="${POSTGRES_SCHEMA}" tableName="api_scope" 
-        	remarks="API_SCOPE captures the definition of a piece or group of functionality within the Sheriff Scheduling App. An Api Scope may be linked to an App Role to allow access to the functionality.
+        	remarks="API_SCOPE captures the definition of a piece or group of functionality within the Court Administration Scheduling App. An Api Scope may be linked to an App Role to allow access to the functionality.
 The API will associate an Api Scope string with each endpoint to determine what endpoints a given session is authorized for, and to adapt the ui accordingly.">
             <column name="api_scope_id" type="UUID">
                 <constraints nullable="false"/>

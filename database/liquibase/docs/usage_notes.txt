@@ -1,4 +1,4 @@
-Sheriff Scheduling Liquibase Notes
+Court Administration Scheduling Liquibase Notes
 
 liquibase folder structure
 		.
@@ -31,7 +31,7 @@ Liquibase command line arguments
 		applied
 				contexts - can be used to selectively include or exclude certain
 				  	changesets.  See the Contexts section below for more explanation
-				  	and a list of the contexts being used in Sheriff Scheduling
+				  	and a list of the contexts being used in Court Administration Scheduling
 				defaultSchemaName - this is the default schema under which objects
 						are created in the DB, and where liquibase looks for them, if 
 						the schema is not otherwise specified.
@@ -53,11 +53,11 @@ Liquibase Script Parameters
 
 Script parameters can be passed on the command line using -D<param_name>, and the values
 referenced within the script using ${<param_name>}
-The following parameters are referenced within the liquibase changesets for Sheriff Scheduling
+The following parameters are referenced within the liquibase changesets for Court Administration Scheduling
 
 	  POSTGRES_EXT_SCHEMA
 		    This parameter tells liquibase in what schema any extensions are installed.
-		    Specifically, for Sheriff Scheduling, we use the uuid-ossp extension for 
+		    Specifically, for Court Administration Scheduling, we use the uuid-ossp extension for 
 		    generating UUIDs in changesets for creating data.  
 		    The db-env (formerly roles) changelog uses this parameter to check for the
 		    existence of the required extension in the expected schema, and installs

@@ -1,5 +1,5 @@
 # This file is used in conjuction with https://sequencediagram.org/
-title Sheriff Scheduling Authentication Flow
+title Court Administration Scheduling Authentication Flow
 
 participantspacing equal
 actor User

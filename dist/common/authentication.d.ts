@@ -15,7 +15,7 @@ export interface Scopes {
 */
 export declare type Scope = Scopes[keyof (Scopes)];
 /**
- * The payload of a compact JWT token within the Sheriff Scheduling application.
+ * The payload of a compact JWT token within the Court Administration Scheduling application.
  *
  * @export
  * @interface TokenPayload
