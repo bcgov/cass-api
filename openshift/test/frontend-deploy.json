@@ -255,7 +255,7 @@
             "displayName": "Image Namespace",
             "name": "IMAGE_NAMESPACE",
             "required": true,
-            "value": "jag-shuber-tools"
+            "value": "apndkr-tools"
         },
         {
             "description": "OpenShift cluster private IP range in CIDR notation, used by Nginx ngx_http_realip_module.",

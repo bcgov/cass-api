@@ -114,13 +114,13 @@
             "displayName": "Git Repository URL",
             "required": true,
             "description": "The URL of the repository with your application sourcecode.",
-            "value": "https://github.com/bcgov/jag-shuber-api"
+            "value": "https://github.com/WadeBarnes/jag-shuber-api.git"
         },
         {
             "name": "GIT_REF",
             "displayName": "Git Reference",
             "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch.",
-            "value": "master"
+            "value": "cass"
         },
         {
             "name": "CONTEXT_DIR",
