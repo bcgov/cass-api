@@ -221,30 +221,6 @@ objects:
           schedulerName: default-scheduler
     status: {}
 
-  - kind: Route
-    apiVersion: v1
-    metadata:
-      name: "${API_SERVICE_NAME}"
-      labels:
-        name: "${API_SERVICE_NAME}"
-        app: ${APP_NAME}
-        role: ${API_SERVICE_ROLE}
-        env: ${API_IMAGE_TAG}
-      annotations:
-        openshift.io/host.generated: "true"
-    spec:
-      to:
-        kind: Service
-        name: "${API_SERVICE_NAME}"
-        weight: 100
-      port:
-        targetPort: api-port
-      tls:
-        termination: edge
-        insecureEdgeTerminationPolicy: Redirect
-      wildcardPolicy: None
-    status: {}
-
   - kind: Secret
     apiVersion: v1
     metadata:
