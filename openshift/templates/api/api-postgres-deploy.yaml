@@ -28,7 +28,7 @@ objects:
       labels:
         name: "${API_SERVICE_NAME}"
         app: ${APP_NAME}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
     spec:
       description: |
         Allow the api to talk to the database pod.
@@ -36,11 +36,11 @@ objects:
         to establish communication to any other pod.
       source:
         - - app=${APP_NAME}
-        - - env=${TAG_NAME}
+        - - env=${API_IMAGE_TAG}
         - - role=${API_SERVICE_ROLE}
       destination:
         - - app=${APP_NAME}
-        - - env=${TAG_NAME}
+        - - env=${API_IMAGE_TAG}
         - - role=${DATABASE_SERVICE_ROLE}
 
   - kind: Secret
@@ -51,7 +51,7 @@ objects:
         name: "${API_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${API_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       annotations:
         template.openshift.io/expose-user: "{.data['api-user']}"
         template.openshift.io/expose-password: "{.data['api-password']}"
@@ -69,7 +69,7 @@ objects:
         name: "${API_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${API_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
     spec:
       ports:
         - name: api-port
@@ -77,7 +77,7 @@ objects:
           port: 8080
           targetPort: 8080
       selector:
-        app: "${API_SERVICE_NAME}"
+        name: "${API_SERVICE_NAME}"
       type: ClusterIP
       sessionAffinity: None
     status:
@@ -91,7 +91,7 @@ objects:
         name: "${API_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${API_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       generation: 1
     spec:
       strategy:
@@ -147,14 +147,14 @@ objects:
         - type: ConfigChange
       replicas: 1
       selector:
-        app: "${API_SERVICE_NAME}"
+        name: "${API_SERVICE_NAME}"
       template:
         metadata:
           labels:
             name: "${API_SERVICE_NAME}"
             app: ${APP_NAME}
             role: ${API_SERVICE_ROLE}
-            env: ${TAG_NAME}
+            env: ${API_IMAGE_TAG}
         spec:
           containers:
             - name: "${API_SERVICE_NAME}"
@@ -229,7 +229,7 @@ objects:
         name: "${API_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${API_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       annotations:
         openshift.io/host.generated: "true"
     spec:
@@ -253,7 +253,7 @@ objects:
         name: "${DATABASE_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${DATABASE_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       annotations:
         template.openshift.io/expose-username: "{.data['database-user']}"
         template.openshift.io/expose-password: "{.data['database-password']}"
@@ -273,7 +273,7 @@ objects:
         name: "${DATABASE_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${DATABASE_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       annotations:
         template.openshift.io/expose-uri: postgres://{.spec.clusterIP}:{.spec.ports[?(.name=="postgresql")].port}
     spec:
@@ -298,7 +298,7 @@ objects:
         name: "${DATABASE_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${DATABASE_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
     spec:
       accessModes:
         - ReadWriteOnce
@@ -314,7 +314,7 @@ objects:
         name: "${DATABASE_SERVICE_NAME}"
         app: ${APP_NAME}
         role: ${DATABASE_SERVICE_ROLE}
-        env: ${TAG_NAME}
+        env: ${API_IMAGE_TAG}
       annotations:
         template.alpha.openshift.io/wait-for-ready: "true"
     spec:
@@ -342,7 +342,7 @@ objects:
             name: "${DATABASE_SERVICE_NAME}"
             app: ${APP_NAME}
             role: ${DATABASE_SERVICE_ROLE}
-            env: ${TAG_NAME}
+            env: ${API_IMAGE_TAG}
         spec:
           containers:
             - name: postgresql
@@ -417,7 +417,7 @@ parameters:
     description: The name of the OpenShift Service exposed for the api.
     required: true
     value: api
-  - name: API_SERVICE_OLE
+  - name: API_SERVICE_ROLE
     displayName: Api Service Role
     description: Api Service Role
     required: true
