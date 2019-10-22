@@ -2,7 +2,7 @@
 
 \i work_section_code.sql
 \i jail_role_code.sql
-\i sheriff_rank_code.sql
+\i sheriff_rank_code.sql or \i sheriff_rank_code_cass.sql
 \i other_assign_code.sql
 
 \i region.sql
