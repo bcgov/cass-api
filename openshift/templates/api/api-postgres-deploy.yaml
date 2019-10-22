@@ -21,16 +21,41 @@ labels:
   template: shuber-api-template
 objects:
 
+  - kind: NetworkSecurityPolicy
+    apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
+    metadata:
+      name: ${API_SERVICE_NAME}
+      labels:
+        name: "${API_SERVICE_NAME}"
+        app: ${APP_NAME}
+        env: ${TAG_NAME}
+    spec:
+      description: |
+        Allow the api to talk to the database pod.
+        There is no NetworkSecurityPolicy defined for the database because we don't want it to be able
+        to establish communication to any other pod.
+      source:
+        - - app=${APP_NAME}
+        - - env=${TAG_NAME}
+        - - role=${API_SERVICE_ROLE}
+      destination:
+        - - app=${APP_NAME}
+        - - env=${TAG_NAME}
+        - - role=${DATABASE_SERVICE_ROLE}
+
   - kind: Secret
     apiVersion: v1
     metadata:
       name: "${API_SERVICE_NAME}"
+      labels:
+        name: "${API_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${API_SERVICE_ROLE}
+        env: ${TAG_NAME}
       annotations:
         template.openshift.io/expose-user: "{.data['api-user']}"
         template.openshift.io/expose-password: "{.data['api-password']}"
         template.openshift.io/expose-jwt-secret: "{.data['api-jwt-secret']}"
-      labels:
-        app: "${API_SERVICE_NAME}"
     stringData:
       api-user: "${API_DATABASE_USER}"
       api-password: "${API_DATABASE_PASS}"
@@ -41,7 +66,10 @@ objects:
     metadata:
       name: "${API_SERVICE_NAME}"
       labels:
-        app: "${API_SERVICE_NAME}"
+        name: "${API_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${API_SERVICE_ROLE}
+        env: ${TAG_NAME}
     spec:
       ports:
         - name: api-port
@@ -59,11 +87,12 @@ objects:
     apiVersion: v1
     metadata:
       name: "${API_SERVICE_NAME}"
-      generation: 1
-      creationTimestamp:
       labels:
-        app: "${API_SERVICE_NAME}"
-      annotations: {}
+        name: "${API_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${API_SERVICE_ROLE}
+        env: ${TAG_NAME}
+      generation: 1
     spec:
       strategy:
         type: Recreate
@@ -121,9 +150,11 @@ objects:
         app: "${API_SERVICE_NAME}"
       template:
         metadata:
-          creationTimestamp:
           labels:
-            app: "${API_SERVICE_NAME}"
+            name: "${API_SERVICE_NAME}"
+            app: ${APP_NAME}
+            role: ${API_SERVICE_ROLE}
+            env: ${TAG_NAME}
         spec:
           containers:
             - name: "${API_SERVICE_NAME}"
@@ -194,11 +225,13 @@ objects:
     apiVersion: v1
     metadata:
       name: "${API_SERVICE_NAME}"
-      creationTimestamp:
+      labels:
+        name: "${API_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${API_SERVICE_ROLE}
+        env: ${TAG_NAME}
       annotations:
         openshift.io/host.generated: "true"
-      labels:
-        app: "${API_SERVICE_NAME}"
     spec:
       to:
         kind: Service
@@ -216,13 +249,16 @@ objects:
     apiVersion: v1
     metadata:
       name: "${DATABASE_SERVICE_NAME}"
+      labels:
+        name: "${DATABASE_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${DATABASE_SERVICE_ROLE}
+        env: ${TAG_NAME}
       annotations:
         template.openshift.io/expose-username: "{.data['database-user']}"
         template.openshift.io/expose-password: "{.data['database-password']}"
         template.openshift.io/expose-admin-password: "{.data['database-admin-password']}"
         template.openshift.io/expose-database_name: "{.data['database-name']}"
-      labels:
-        app: "${DATABASE_SERVICE_NAME}"
     stringData:
       database-user: "${POSTGRESQL_USER}"
       database-password: "${POSTGRESQL_PASSWORD}"
@@ -233,6 +269,11 @@ objects:
     apiVersion: v1
     metadata:
       name: "${DATABASE_SERVICE_NAME}"
+      labels:
+        name: "${DATABASE_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${DATABASE_SERVICE_ROLE}
+        env: ${TAG_NAME}
       annotations:
         template.openshift.io/expose-uri: postgres://{.spec.clusterIP}:{.spec.ports[?(.name=="postgresql")].port}
     spec:
@@ -253,6 +294,11 @@ objects:
     apiVersion: v1
     metadata:
       name: "${DATABASE_SERVICE_NAME}"
+      labels:
+        name: "${DATABASE_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${DATABASE_SERVICE_ROLE}
+        env: ${TAG_NAME}
     spec:
       accessModes:
         - ReadWriteOnce
@@ -264,6 +310,11 @@ objects:
     apiVersion: v1
     metadata:
       name: "${DATABASE_SERVICE_NAME}"
+      labels:
+        name: "${DATABASE_SERVICE_NAME}"
+        app: ${APP_NAME}
+        role: ${DATABASE_SERVICE_ROLE}
+        env: ${TAG_NAME}
       annotations:
         template.alpha.openshift.io/wait-for-ready: "true"
     spec:
@@ -286,8 +337,12 @@ objects:
         name: "${DATABASE_SERVICE_NAME}"
       template:
         metadata:
+          name: "${DATABASE_SERVICE_NAME}"
           labels:
             name: "${DATABASE_SERVICE_NAME}"
+            app: ${APP_NAME}
+            role: ${DATABASE_SERVICE_ROLE}
+            env: ${TAG_NAME}
         spec:
           containers:
             - name: postgresql
@@ -356,6 +411,32 @@ objects:
     status: {}
 
 parameters:
+
+  - name: API_SERVICE_NAME
+    displayName: Api Service Name
+    description: The name of the OpenShift Service exposed for the api.
+    required: true
+    value: api
+  - name: API_SERVICE_OLE
+    displayName: Api Service Role
+    description: Api Service Role
+    required: true
+    value: api
+  - name: DATABASE_SERVICE_NAME
+    displayName: Database Service Name
+    description: The name of the OpenShift Service exposed for the database.
+    required: true
+    value: postgres
+  - name: DATABASE_SERVICE_ROLE
+    displayName: Database Service Role
+    description: Database Service Role
+    required: true
+    value: db
+  - name: APP_NAME
+    displayName: App Name
+    description: App Name
+    required: true
+    value: cass
   - name: API_IMAGE_NAMESPACE
     displayName: Api ImageStream Project
     description: The OpenShift Project where the Api ImageStream resides.
@@ -378,11 +459,6 @@ parameters:
       contexts](http://www.liquibase.org/documentation/contexts.html) for more info)
     required: false
     value: prod
-  - name: API_SERVICE_NAME
-    displayName: Api Service Name
-    description: The name of the OpenShift Service exposed for the api.
-    value: api
-    required: true
   - name: API_DATABASE_SCHEMA
     displayName: API Database Schema
     description: Name of the schema to be used by the Api.
@@ -424,11 +500,6 @@ parameters:
     displayName: Namespace
     description: The OpenShift Namespace where the ImageStream resides.
     value: openshift
-  - name: DATABASE_SERVICE_NAME
-    displayName: Database Service Name
-    description: The name of the OpenShift Service exposed for the database.
-    value: postgres
-    required: true
   - name: DATABASE_DEFAULT_SCHEMA
     displayName: Default database schema
     description: The default schema to use in the database
