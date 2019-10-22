@@ -20,6 +20,7 @@ message: |-
 labels:
   template: shuber-api-template
 objects:
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -32,6 +33,7 @@ objects:
     stringData:
       api-user: "${API_DATABASE_USER}"
       api-password: "${API_DATABASE_PASS}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -50,8 +52,9 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
-  - apiVersion: autoscaling/v1
-    kind: HorizontalPodAutoscaler
+
+  - kind: HorizontalPodAutoscaler
+    apiVersion: autoscaling/v1
     metadata:
       name: "${API_SERVICE_NAME}-blue"
       labels:
@@ -64,6 +67,7 @@ objects:
         subresource: scale
       minReplicas: 2
       maxReplicas: 6
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -175,6 +179,7 @@ objects:
           securityContext: {}
           schedulerName: default-scheduler
     status: {}
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -187,6 +192,7 @@ objects:
     stringData:
       api-user: "${API_DATABASE_USER}"
       api-password: "${API_DATABASE_PASS}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -205,8 +211,9 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
-  - apiVersion: autoscaling/v1
-    kind: HorizontalPodAutoscaler
+  
+  - kind: HorizontalPodAutoscaler
+    apiVersion: autoscaling/v1
     metadata:
       name: "${API_SERVICE_NAME}-green"
       labels:
@@ -219,6 +226,7 @@ objects:
         subresource: scale
       minReplicas: 2
       maxReplicas: 6
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -330,6 +338,7 @@ objects:
           securityContext: {}
           schedulerName: default-scheduler
     status: {}
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -346,6 +355,7 @@ objects:
       database-password: "${POSTGRESQL_PASSWORD}"
       database-admin-password: "${POSTGRESQL_ADMIN_PASSWORD}"
       database-name: "${POSTGRESQL_DATABASE}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -365,6 +375,7 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
+
   - kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
@@ -375,6 +386,7 @@ objects:
       resources:
         requests:
           storage: "${VOLUME_CAPACITY}"
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -469,6 +481,7 @@ objects:
           restartPolicy: Always
           dnsPolicy: ClusterFirst
     status: {}
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -485,6 +498,7 @@ objects:
       database-password: "${POSTGRESQL_PASSWORD}"
       database-admin-password: "${POSTGRESQL_ADMIN_PASSWORD}"
       database-name: "${POSTGRESQL_DATABASE}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -504,6 +518,7 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
+
   - kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
@@ -514,6 +529,7 @@ objects:
       resources:
         requests:
           storage: "${VOLUME_CAPACITY}"
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -608,6 +624,7 @@ objects:
           restartPolicy: Always
           dnsPolicy: ClusterFirst
     status: {}
+
 parameters:
   - name: API_DATA_CONTEXTS
     displayName: API Data Contexts

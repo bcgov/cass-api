@@ -20,6 +20,7 @@ message: |-
 labels:
   template: shuber-api-template
 objects:
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -34,6 +35,7 @@ objects:
       api-user: "${API_DATABASE_USER}"
       api-password: "${API_DATABASE_PASS}"
       api-jwt-secret: "${API_JWT_SECRET}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -52,6 +54,7 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -186,6 +189,7 @@ objects:
           securityContext: {}
           schedulerName: default-scheduler
     status: {}
+
   - kind: Route
     apiVersion: v1
     metadata:
@@ -207,6 +211,7 @@ objects:
         insecureEdgeTerminationPolicy: Redirect
       wildcardPolicy: None
     status: {}
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -223,6 +228,7 @@ objects:
       database-password: "${POSTGRESQL_PASSWORD}"
       database-admin-password: "${POSTGRESQL_ADMIN_PASSWORD}"
       database-name: "${POSTGRESQL_DATABASE}"
+
   - kind: Service
     apiVersion: v1
     metadata:
@@ -242,6 +248,7 @@ objects:
       sessionAffinity: None
     status:
       loadBalancer: {}
+
   - kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
@@ -252,6 +259,7 @@ objects:
       resources:
         requests:
           storage: "${VOLUME_CAPACITY}"
+
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
@@ -346,6 +354,7 @@ objects:
           restartPolicy: Always
           dnsPolicy: ClusterFirst
     status: {}
+
 parameters:
   - name: API_IMAGE_NAMESPACE
     displayName: Api ImageStream Project

@@ -7,8 +7,9 @@ metadata:
     tags: react,nginx
   name: frontend
 objects:
-  - apiVersion: v1
-    kind: DeploymentConfig
+
+  - kind: DeploymentConfig
+    apiVersion: v1
     metadata:
       creationTimestamp:
       labels:
@@ -103,8 +104,9 @@ objects:
               kind: ImageStreamTag
               namespace: "${IMAGE_NAMESPACE}"
               name: "${NAME}:${TAG_NAME}"
-  - apiVersion: v1
-    kind: Service
+
+  - kind: Service
+    apiVersion: v1
     metadata:
       creationTimestamp:
       labels:
@@ -121,8 +123,9 @@ objects:
         deploymentconfig: "${NAME}"
       sessionAffinity: None
       type: ClusterIP
-  - apiVersion: v1
-    kind: Route
+
+  - kind: Route
+    apiVersion: v1
     metadata:
       labels:
         app: "${NAME}"
@@ -138,8 +141,9 @@ objects:
         kind: Service
         name: "${NAME}"
         weight: 100
-  - apiVersion: autoscaling/v1
-    kind: HorizontalPodAutoscaler
+
+  - kind: HorizontalPodAutoscaler
+    apiVersion: autoscaling/v1
     metadata:
       name: "${NAME}"
       labels:
@@ -152,8 +156,9 @@ objects:
         subresource: scale
       minReplicas: 1
       maxReplicas: 6
-  - apiVersion: v1
-    kind: Route
+
+  - kind: Route
+    apiVersion: v1
     metadata:
       labels:
         app: "${REV_PROXY_APP}"
@@ -168,6 +173,7 @@ objects:
         kind: Service
         name: "${NAME}"
         weight: 100
+
 parameters:
   - description:
       The name assigned to all of the openshift objects defined in this template.
