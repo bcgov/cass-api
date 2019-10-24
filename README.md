@@ -1,5 +1,8 @@
-# Sheriff Scheduling API
-This project represents the API for the Sheriff Scheduling (Code Named 'Shuber') application.
+# Court Administration Scheduling API
+
+This project represents the API for the Court Administration Scheduling System.
+
+This project is based on the Sheriff Scheduling System.  It started as a POC/Demo and therefore may still contain references to the term `sheriff`.
 
 ## Project Architecture
 The architecture notes for this project and be found in the [Project Docs](./docs/index.md).
@@ -64,7 +67,7 @@ Generally, I run the following two commands in separate terminal windows so that
 
 #### `yarn test`
 >
-> runs the jest tests for the application (should be done in conjuction with the `yarn watch:testing` command described above).  This command will use the values of `.env.jest` to override the values within `.env.testing` this is to allow the test runner to have admin access to the database so that tables and records can be deleted and cleaned for testing purposes.
+> runs the jest tests for the application (should be done in conjunction with the `yarn watch:testing` command described above).  This command will use the values of `.env.jest` to override the values within `.env.testing` this is to allow the test runner to have admin access to the database so that tables and records can be deleted and cleaned for testing purposes.
 
 
 #### `yarn test:coverage`

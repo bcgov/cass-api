@@ -6,7 +6,7 @@ library identifier: 'devops-library@master', retriever: modernSCM([
 
 // Edit your app's name below
 APP_NAME = 'api'
-PROJECT_PREFIX = "jag-shuber"
+PROJECT_PREFIX = "apndkr"
 
 // You shouldn't have to edit these if you're following the conventions
 SLACK_DEV_CHANNEL="#sheriffscheduling_dev"

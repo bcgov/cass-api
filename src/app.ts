@@ -18,7 +18,7 @@ RegisterRoutes(router);
 
 router.get('/', async ctx => {
     ctx.body = {
-        data: "Sheriff Scheduling API"
+        data: "Court Administration Scheduling API"
     }
 })
 .get('/status',async ctx=>{

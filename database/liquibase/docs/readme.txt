@@ -1,4 +1,4 @@
-Sheriff Scheduling Liquibase Readme
+Court Administration Scheduling Liquibase Readme
 
 2018-06-05
 Addition of parameter POSTGRES_EXT_SCHEMA to liquibase scripts

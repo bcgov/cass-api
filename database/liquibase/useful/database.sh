@@ -14,7 +14,7 @@ export POSTGRES_DATABASE=appdb
 export POSTGRES_APP_USER=shersched
 export POSTGRES_APP_PASS=password
 
-#catalog and schema to use for sheriff scheduling application
+#catalog and schema to use for Court Administration Scheduling application
 export POSTGRES_CATALOG=appdb
 export POSTGRES_SCHEMA=shersched
 

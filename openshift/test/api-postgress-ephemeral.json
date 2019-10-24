@@ -462,7 +462,7 @@
             "displayName": "Api ImageStream Project",
             "description": "The OpenShift Project where the Api ImageStream resides.",
             "required": true,
-            "value": "jag-shuber-tools"
+            "value": "apndkr-tools"
         },
         {
             "name": "API_IMAGE_STREAM",

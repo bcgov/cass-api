@@ -14,7 +14,7 @@ REM application user information
 set POSTGRES_APP_USER=shersched
 set POSTGRES_APP_PASS=password
 
-REM catalog and schema to use for sheriff scheduling application
+REM catalog and schema to use for Court Administration Scheduling application
 set POSTGRES_CATALOG=appdb
 set POSTGRES_SCHEMA=shersched
 

@@ -57,46 +57,46 @@ print_color(){
     end_color
 }
 
-# Delete a project if it already exists
-delete_project_if_exists(){
-    oc project "$1" &>/dev/null 
-    if [ "$?" == "0" ]; then
-        print_color $GREEN "Removing '$1' project...\r\n"
-        start_color $DARK_GRAY
-        oc delete all --all --force=true
-        oc delete project "$1"
-        oc project "$1" &>/dev/null
-        while [ "$?" == "0" ]; do
-            oc project "$1" &>/dev/null
-        done        
-        sleep 1
-        end_color
-    fi
-}
+# # Delete a project if it already exists
+# delete_project_if_exists(){
+#     oc project "$1" &>/dev/null 
+#     if [ "$?" == "0" ]; then
+#         print_color $GREEN "Removing '$1' project...\r\n"
+#         start_color $DARK_GRAY
+#         oc delete all --all --force=true
+#         oc delete project "$1"
+#         oc project "$1" &>/dev/null
+#         while [ "$?" == "0" ]; do
+#             oc project "$1" &>/dev/null
+#         done        
+#         sleep 1
+#         end_color
+#     fi
+# }
 
-create_project(){
-    print_color $GREEN "Creating project '$1'...\r\n"
-    start_color $DARK_GRAY
-    oc new-project "$1" &>/dev/null
-    if [ "$?" != "0" ]; then
-        sleep 1
-        oc new-project "$1"        
-    fi
-    if [ "$?" != "0" ]; then
-        sleep 1
-        oc new-project "$1"
-    fi
-    if [ "$?" != "0" ]; then
-        sleep 1
-        oc new-project "$1"
-    fi       
-    if [ "$?" != "0" ]; then
-        print_color $RED "Couldn't create project '$1'\r\n"
-        exit 1
-    fi  
+# create_project(){
+#     print_color $GREEN "Creating project '$1'...\r\n"
+#     start_color $DARK_GRAY
+#     oc new-project "$1" &>/dev/null
+#     if [ "$?" != "0" ]; then
+#         sleep 1
+#         oc new-project "$1"        
+#     fi
+#     if [ "$?" != "0" ]; then
+#         sleep 1
+#         oc new-project "$1"
+#     fi
+#     if [ "$?" != "0" ]; then
+#         sleep 1
+#         oc new-project "$1"
+#     fi       
+#     if [ "$?" != "0" ]; then
+#         print_color $RED "Couldn't create project '$1'\r\n"
+#         exit 1
+#     fi  
 
-    end_color    
-}
+#     end_color    
+# }
 
 grant_puller_permissions(){
     oc policy add-role-to-user system:image-puller system:serviceaccount:$1:default -n $2
@@ -170,26 +170,26 @@ EOT
     print_color $YELLOW "You can find necessary credentials at: \r\n\thttps://$ip:8443/console/project/$projectName/browse/secrets/postgres\r\n"
 }
 
-create_tools_project(){
-    create_project $1
-    start_color $DARK_GRAY
-    oc process -f "$SCRIPT_DIR/templates/api-builder/api-builder-build.json" $params | oc create -f -
-    oc process -f "$SCRIPT_DIR/templates/api/api-build.json" $params | oc create -f -
-    end_color
-}
+# create_tools_project(){
+#     create_project $1
+#     start_color $DARK_GRAY
+#     oc process -f "$SCRIPT_DIR/templates/api-builder/api-builder-build.json" $params | oc create -f -
+#     oc process -f "$SCRIPT_DIR/templates/api/api-build.json" $params | oc create -f -
+#     end_color
+# }
 
-# Arg1: Name of project
-# Arg2: Name of tools project
-create_deployment_project(){
-    create_project $1
-    start_color $DARK_GRAY
-    params="-p API_IMAGE_NAMESPACE=$2"
-    grant_puller_permissions $1 $2
-    oc process -f "$SCRIPT_DIR/api-postgres-deploy.json" $params | oc create -f -
-    end_color
-    expose_postgres
-    write_postgres_envfile
-}
+# # Arg1: Name of project
+# # Arg2: Name of tools project
+# create_deployment_project(){
+#     create_project $1
+#     start_color $DARK_GRAY
+#     params="-p API_IMAGE_NAMESPACE=$2"
+#     grant_puller_permissions $1 $2
+#     oc process -f "$SCRIPT_DIR/api/api-postgres-deploy.json" $params | oc create -f -
+#     end_color
+#     expose_postgres
+#     write_postgres_envfile
+# }
 
 clean_postgres(){
     oc project $1
