@@ -1,8 +1,15 @@
 # Court Administration Scheduling API
+The API portion of the Court Administration Scheduling System.  The frontend for the Court Administration Scheduling System can be found here; [Court Administration Scheduling Frontend](https://github.com/bcgov/cass-frontend)
 
-This project represents the API for the Court Administration Scheduling System.
+This project is based on the [Sheriff Scheduling API](https://github.com/bcgov/jag-shuber-api).  Although this project is not (can't be) a direct fork of the [Sheriff Scheduling Frontend](https://github.com/bcgov/jag-shuber-api), the commit history was retained to make it easy (although not quite as easy as a PR) to share changes between the projects.
 
-This project is based on the Sheriff Scheduling System.  It started as a POC/Demo and therefore may still contain references to the term `sheriff`.
+This project was done with a very limited budget and timeline as a POC/Demo, as such it may still contain references to the term `sheriff`.
+
+## Looking toward the future
+
+At it's core this (and the parent project) is a scheduling application that does not need to be fixed as a domain specific application.
+
+Give more time and budget, the scheduling features and UX of the Sheriff/Court Administration Scheduling System should be developed into a more generic application that can be **configured** (through deployment (preferably) and/or build configuration) to act as a scheduling system for any domain that would benefit from scheduling features provided by the application.  Alternatively it could be developed into a multi-tenant/domain system to service multiple business areas within a single application.
 
 ## Project Architecture
 The architecture notes for this project and be found in the [Project Docs](./docs/index.md).
