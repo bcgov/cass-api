@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "shuber-api-build",
+        "name": "cass-api-build",
         "creationTimestamp": null
     },
     "objects": [{
@@ -114,7 +114,7 @@
             "displayName": "Git Repository URL",
             "required": true,
             "description": "The URL of the repository with your application sourcecode.",
-            "value": "https://github.com/WadeBarnes/jag-shuber-api.git"
+            "value": "https://github.com/bcgov/cass-api.git"
         },
         {
             "name": "GIT_REF",

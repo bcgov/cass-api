@@ -11,11 +11,11 @@ The architecture notes for this project and be found in the [Project Docs](./doc
 
 This API includes a Typescript / Javascript client within the repo that can be added to your project via
 
-`yarn add github:bcgov/jag-shuber-api`
+`yarn add github:bcgov/cass-api`
 
 or 
 
-`npm install github:bcgov/jag-shuber-api`
+`npm install github:bcgov/cass-api`
 
 ### Package Development
 
@@ -23,7 +23,7 @@ If you are working on developing the Client api, the typical flow is as follows:
 
 Within this project folder run `yarn link` This registers this project as a local package.
 
-Then within your frontend project run `yarn link jag-shuber-api`, which will simlink in the registered local pacakge into your node_modules.
+Then within your frontend project run `yarn link cass-api`, which will simlink in the registered local pacakge into your node_modules.
 
 Then you'll want to run this project in dev mode (i.e. `yarn watch:dev`) and start your frontend project in dev mode which will point the api proxy to this instance.
 
@@ -31,7 +31,7 @@ Then you'll want to run this project in dev mode (i.e. `yarn watch:dev`) and sta
 
 ### Development Environment
 - Deploy the backend to minishift (See [openshift/Readme.md](openshift/Readme.md))
-- The build of the shuber-api will deploy and will migrate the database via `liquibase`, so if you have a branch that has new database changes you will need to build and deploy that branch (in order to migrate the database) before you can run your local development instance against the database.
+- The build of the cass-api will deploy and will migrate the database via `liquibase`, so if you have a branch that has new database changes you will need to build and deploy that branch (in order to migrate the database) before you can run your local development instance against the database.
 - Once the development environment is set up, you should be able to use the commands described [below](#commands) to get your development / test instances up and running.
 
 ### Debugging

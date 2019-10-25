@@ -64,7 +64,7 @@
       "displayName": "Git Repo URL",
       "description": "The URL to your GIT repo, don't use the this default unless your just experimenting.",
       "required": true,
-      "value": "https://github.com/WadeBarnes/jag-shuber-api.git"
+      "value": "https://github.com/bcgov/cass-api.git"
     },
     {
       "name": "GIT_REF",
