@@ -2,10 +2,10 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: shuber-api-postgres
+  name: cass-api-postgres
   annotations:
-    openshift.io/display-name: Shuber API + PostGres
-    description: Shuber Api ontop of Postgresql
+    openshift.io/display-name: CASS API + PostGres
+    description: CASS Api ontop of Postgresql
     iconClass: icon-postgresql
     tags: database,postgresql
 message: |-
@@ -18,7 +18,7 @@ message: |-
 
   For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/postgresql-container/.
 labels:
-  template: shuber-api-template
+  template: cass-api-template
 objects:
 
   - kind: Secret
@@ -642,7 +642,7 @@ parameters:
     displayName: Api Image Stream
     description: The name of the API image stream.
     required: true
-    value: shuber-api
+    value: cass-api
   - name: API_SERVICE_NAME
     displayName: Api Service Name
     description: The name of the OpenShift Service exposed for the api.

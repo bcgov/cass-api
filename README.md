@@ -1,8 +1,15 @@
 # Court Administration Scheduling API
+The API portion of the Court Administration Scheduling System.  The frontend for the Court Administration Scheduling System can be found here; [Court Administration Scheduling Frontend](https://github.com/bcgov/cass-frontend)
 
-This project represents the API for the Court Administration Scheduling System.
+This project is based on the [Sheriff Scheduling API](https://github.com/bcgov/jag-shuber-api).  Although this project is not (can't be) a direct fork of the [Sheriff Scheduling Frontend](https://github.com/bcgov/jag-shuber-api), the commit history was retained to make it easy (although not quite as easy as a PR) to share changes between the projects.
 
-This project is based on the Sheriff Scheduling System.  It started as a POC/Demo and therefore may still contain references to the term `sheriff`.
+This project was done with a very limited budget and timeline as a POC/Demo, as such it may still contain references to the term `sheriff`.
+
+## Looking toward the future
+
+At it's core this (and the parent project) is a scheduling application that does not need to be fixed as a domain specific application.
+
+Give more time and budget, the scheduling features and UX of the Sheriff/Court Administration Scheduling System should be developed into a more generic application that can be **configured** (through deployment (preferably) and/or build configuration) to act as a scheduling system for any domain that would benefit from scheduling features provided by the application.  Alternatively it could be developed into a multi-tenant/domain system to service multiple business areas within a single application.
 
 ## Project Architecture
 The architecture notes for this project and be found in the [Project Docs](./docs/index.md).
@@ -11,11 +18,11 @@ The architecture notes for this project and be found in the [Project Docs](./doc
 
 This API includes a Typescript / Javascript client within the repo that can be added to your project via
 
-`yarn add github:bcgov/jag-shuber-api`
+`yarn add github:bcgov/cass-api`
 
 or 
 
-`npm install github:bcgov/jag-shuber-api`
+`npm install github:bcgov/cass-api`
 
 ### Package Development
 
@@ -23,7 +30,7 @@ If you are working on developing the Client api, the typical flow is as follows:
 
 Within this project folder run `yarn link` This registers this project as a local package.
 
-Then within your frontend project run `yarn link jag-shuber-api`, which will simlink in the registered local pacakge into your node_modules.
+Then within your frontend project run `yarn link cass-api`, which will simlink in the registered local pacakge into your node_modules.
 
 Then you'll want to run this project in dev mode (i.e. `yarn watch:dev`) and start your frontend project in dev mode which will point the api proxy to this instance.
 
@@ -31,7 +38,7 @@ Then you'll want to run this project in dev mode (i.e. `yarn watch:dev`) and sta
 
 ### Development Environment
 - Deploy the backend to minishift (See [openshift/Readme.md](openshift/Readme.md))
-- The build of the shuber-api will deploy and will migrate the database via `liquibase`, so if you have a branch that has new database changes you will need to build and deploy that branch (in order to migrate the database) before you can run your local development instance against the database.
+- The build of the cass-api will deploy and will migrate the database via `liquibase`, so if you have a branch that has new database changes you will need to build and deploy that branch (in order to migrate the database) before you can run your local development instance against the database.
 - Once the development environment is set up, you should be able to use the commands described [below](#commands) to get your development / test instances up and running.
 
 ### Debugging

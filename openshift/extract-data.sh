@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPT_DIR=`dirname $0`
 SERVER_URL="https://console.pathfinder.gov.bc.ca:8443"
-PROJECT_IDENTIFIER="shuber"
+PROJECT_IDENTIFIER="cass"
 EXTRACTED_DATA_DIR="$PWD/EXTRACTED-DATA"
 source "$SCRIPT_DIR/functions.sh"
 
