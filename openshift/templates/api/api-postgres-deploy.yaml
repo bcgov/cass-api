@@ -35,12 +35,8 @@ objects:
         There is no NetworkSecurityPolicy defined for the database because we don't want it to be able
         to establish communication to any other pod.
       source:
-        - - app=${APP_NAME}
-        - - env=${API_IMAGE_TAG}
         - - role=${API_SERVICE_ROLE}
       destination:
-        - - app=${APP_NAME}
-        - - env=${API_IMAGE_TAG}
         - - role=${DATABASE_SERVICE_ROLE}
 
   - kind: Secret
