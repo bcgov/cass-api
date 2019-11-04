@@ -36,8 +36,12 @@ objects:
         to establish communication to any other pod.
       source:
         - - role=${API_SERVICE_ROLE}
+          - app=${APP_NAME}
+          - env=${API_IMAGE_TAG}
       destination:
         - - role=${DATABASE_SERVICE_ROLE}
+          - app=${APP_NAME}
+          - env=${API_IMAGE_TAG}
 
   - kind: Secret
     apiVersion: v1
